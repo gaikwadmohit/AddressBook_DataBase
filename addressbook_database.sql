@@ -103,11 +103,35 @@ values
 (1,1),(2,1),(3,2);
 
 select * from Address_book;
-select a.firstname,a.phoneNumber,a.city,a.state,a.eMail,b.addressbookname,b.addressBookId
+select a.fname,a.phone,a.city,a.state,a.email
 from Address_book a
 join addressbookMappeing d
 on a.contactid= d.contactId
 join AddressBookNames b
 on b.addressBookId= d.addressbookId
 
+#UC13
 
+--UC6
+select fname,lName,city from Address_book
+where fname='Appu';
+
+--UC7
+select city,count(*) from Address_book
+where city='Athani'
+group by city;
+
+--UC8
+select * from  Address_book
+where city='Athani'
+order by fname,lName;
+
+--UC10
+select * from Address_book;
+
+select typename,count(*) numberOfContactPersons from Address_book a
+join addressbookMappeing am
+on am.contactid= a.contactid
+join TypesOfContacts t
+on t.typeid= am.addressbookid
+group by t.typename;
