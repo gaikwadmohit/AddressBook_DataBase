@@ -28,7 +28,7 @@ insert into Address_book(fname, lname, city, state, zip, phone, email) values
 UPDATE Address_book
 SET city = 'Bangalore',
 state = 'Karnataka',
-zip = 852369
+zip = '852369',
 WHERE fname = 'swap';
 
 #UC5
@@ -38,3 +38,8 @@ WHERE fname = 'swap';
 #UC6
 SELECT * FROM Address_book
 where city = 'Ahmednagr' or state = 'Maharastra';
+
+
+#UC7
+SELECT COUNT(city or state)
+FROM Address_book;
