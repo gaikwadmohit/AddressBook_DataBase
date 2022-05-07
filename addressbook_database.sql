@@ -56,3 +56,7 @@ update  Address_book set type='Family' where fname ='Mohit';
 update  Address_book set type='Friends' where fname  ='swap';
 update  Address_book set type='Friends' where fname  ='sonu';
 update  Address_book set type='Profession' where fname  ='monu';
+
+#UC10
+SELECT COUNT(type) AS Number_Of_Contact_Person 
+FROM Address_book;
