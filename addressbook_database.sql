@@ -68,3 +68,46 @@ FROM Address_book;
 insert into Address_book(fname, lname, city, state, zip, phone, email) values
 ('Mohit', 'Gaikwad', 'Ahmednagr', 'Maharastra',414501, 9604315270, 'mohit16gaikwad@gmail.com' ),
 update  Address_book set type='Friends' where id =5;
+
+
+#UC12
+
+create table TypesOfContacts
+(
+typeid int primary key ,
+typename varchar(50) not null);
+
+insert into Typesofcontacts
+values
+(1,'Family'),
+(2,'Friends'),
+(3,'Business');
+alter table Address_book
+add contactid int primary key identity(1,1);
+
+select *from Address_book;
+
+create table AddressBookNames
+(addressBookId int primary key identity(1,1),
+addressBookName varchar(50) not null );
+
+insert into AddressBooknames values ('S'),('P'),('H');
+select * from AddressBookNames;
+
+
+create table addressbookMappeing
+(contactid int not null, addressbookid int not null);
+
+insert into addressbookMappeing
+values
+(1,1),(2,1),(3,2);
+
+select * from Address_book;
+select a.firstname,a.phoneNumber,a.city,a.state,a.eMail,b.addressbookname,b.addressBookId
+from Address_book a
+join addressbookMappeing d
+on a.contactid= d.contactId
+join AddressBookNames b
+on b.addressBookId= d.addressbookId
+
+
