@@ -30,3 +30,7 @@ SET city = 'Bangalore',
 state = 'Karnataka',
 zip = 852369
 WHERE fname = 'swap';
+
+#UC5
+DELETE FROM  Address_book
+WHERE fname = 'swap';
