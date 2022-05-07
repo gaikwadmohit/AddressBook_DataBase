@@ -43,3 +43,9 @@ where city = 'Ahmednagr' or state = 'Maharastra';
 #UC7
 SELECT COUNT(city or state)
 FROM Address_book;
+
+#UC8
+select fname
+  from Address_book
+  where city = 'Karnataka'
+  order by fname asc;
