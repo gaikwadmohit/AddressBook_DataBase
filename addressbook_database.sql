@@ -60,3 +60,11 @@ update  Address_book set type='Profession' where fname  ='monu';
 #UC10
 SELECT COUNT(type) AS Number_Of_Contact_Person 
 FROM Address_book;
+
+
+
+#UC11
+
+insert into Address_book(fname, lname, city, state, zip, phone, email) values
+('Mohit', 'Gaikwad', 'Ahmednagr', 'Maharastra',414501, 9604315270, 'mohit16gaikwad@gmail.com' ),
+update  Address_book set type='Friends' where id =5;
