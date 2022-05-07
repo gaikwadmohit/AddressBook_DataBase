@@ -34,3 +34,7 @@ WHERE fname = 'swap';
 #UC5
 DELETE FROM  Address_book
 WHERE fname = 'swap';
+
+#UC6
+SELECT * FROM Address_book
+where city = 'Ahmednagr' or state = 'Maharastra';
