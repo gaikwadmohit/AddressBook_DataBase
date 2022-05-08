@@ -1,10 +1,10 @@
 #UC1
-create database AddressBook_services;
+create database AD_BOOK_SERVICE;
 show databases;
-use AddressBook_services;
+use AD_BOOK_SERVICE;
 
 #UC2
-create table Address_book(
+create table adbook(
 	id int unsigned not null auto_increment,
 	fname varchar(15) not null,
     lname varchar(10) not null,
@@ -15,5 +15,5 @@ create table Address_book(
     email varchar(100) not null,
      primary key (id)
 );
-select * from address_book;
+select * from adbook;
 
