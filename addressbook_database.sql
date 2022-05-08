@@ -1,10 +1,10 @@
 #UC1
-create database AddressBook_services;
+create database AD_BOOK_SERVICE;
 show databases;
-use AddressBook_services;
+use AD_BOOK_SERVICE;
 
 #UC2
-create table Address_book(
+create table adbook(
 	id int unsigned not null auto_increment,
 	fname varchar(15) not null,
     lname varchar(10) not null,
@@ -15,31 +15,27 @@ create table Address_book(
     email varchar(100) not null,
      primary key (id)
 );
-select * from address_book;
+select * from adbook;
 
 #UC3
-insert into Address_book(fname, lname, city, state, zip, phone, email) values
+insert into adbook(fname, lname, city, state, zip, phone, email) values
 ('Mohit', 'Gaikwad', 'Ahmednagr', 'Maharastra',414501, 9604315270, 'mohit16gaikwad@gmail.com' ),
 ('swap', 'tingu', 'Agartalla', 'WestBengal', 845700, 8138975257, 'swap@gmail.com' ),
 ('sonu', 'gaik', 'kolkata', 'Bihar', 794550, 81450945877, 'sonu@gmail.com' ),
 ('monu', 'gaik', 'chennai', 'TamilNaru', 7125487, 81494545879, 'monu@gmail.com' );
 
 #UC4
-UPDATE Address_book
-SET city = 'Bangalore',
-state = 'Karnataka',
-zip = '852369',
-WHERE fname = 'swap';
+UPDATE adbook SET city = 'Bangalore',state = 'Karnataka',zip = 852369 where fname = 'monu';
+
 
 #UC5
-DELETE FROM  Address_book
-WHERE fname = 'swap';
+use AD_BOOK_SERVICE;
+DELETE FROM  adbook where fname = 'monu';
 
 #UC6
-SELECT * FROM Address_book
-where city = 'Ahmednagr' or state = 'Maharastra';
+SELECT * FROM adbook where city = 'Ahmednagr' or state = 'Maharashtra';
 
 
 #UC7
-SELECT COUNT(city or state)
-FROM Address_book;
+	SELECT COUNT(city or state)
+	FROM adbook;
