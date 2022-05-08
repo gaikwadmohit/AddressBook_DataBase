@@ -1,10 +1,10 @@
 #UC1
-create database AddressBook_services;
+create database AD_BOOK_SERVICE;
 show databases;
-use AddressBook_services;
+use AD_BOOK_SERVICE;
 
 #UC2
-create table Address_book(
+create table adbook(
 	id int unsigned not null auto_increment,
 	fname varchar(15) not null,
     lname varchar(10) not null,
@@ -15,123 +15,109 @@ create table Address_book(
     email varchar(100) not null,
      primary key (id)
 );
-select * from address_book;
+select * from adbook;
 
 #UC3
-insert into Address_book(fname, lname, city, state, zip, phone, email) values
+insert into adbook(fname, lname, city, state, zip, phone, email) values
 ('Mohit', 'Gaikwad', 'Ahmednagr', 'Maharastra',414501, 9604315270, 'mohit16gaikwad@gmail.com' ),
 ('swap', 'tingu', 'Agartalla', 'WestBengal', 845700, 8138975257, 'swap@gmail.com' ),
 ('sonu', 'gaik', 'kolkata', 'Bihar', 794550, 81450945877, 'sonu@gmail.com' ),
 ('monu', 'gaik', 'chennai', 'TamilNaru', 7125487, 81494545879, 'monu@gmail.com' );
 
 #UC4
-UPDATE Address_book
-SET city = 'Bangalore',
-state = 'Karnataka',
-zip = '852369',
-WHERE fname = 'swap';
+UPDATE adbook SET city = 'Bangalore',state = 'Karnataka',zip = 852369 where fname = 'monu';
+
 
 #UC5
-DELETE FROM  Address_book
-WHERE fname = 'swap';
+use AD_BOOK_SERVICE;
+DELETE FROM  adbook where fname = 'monu';
 
 #UC6
-SELECT * FROM Address_book
-where city = 'Ahmednagr' or state = 'Maharastra';
+SELECT * FROM adbook where city = 'Ahmednagr' or state = 'Maharashtra';
 
 
 #UC7
-SELECT COUNT(city or state)
-FROM Address_book;
+	SELECT COUNT(city or state)
+	FROM adbook;
 
 #UC8
 select fname
-  from Address_book
-  where city = 'Karnataka'
+  from adbook
+  where city = 'Ahmednagr'
   order by fname asc;
   
   #UC9
-Alter table Address_book add type varchar(15) after lname;
-update  Address_book set type='Family' where fname ='Mohit';
-update  Address_book set type='Friends' where fname  ='swap';
-update  Address_book set type='Friends' where fname  ='sonu';
-update  Address_book set type='Profession' where fname  ='monu';
+Alter table adbook add type varchar(15) after lname;
+update  adbook set type='Family' where fname ='Mohit';
+update  adbook set type='Friends' where fname  ='swap';
+update  adbook set type='Friends' where fname  ='sonu';
+update  adbook set type='Profession' where fname  ='monu';
 
 #UC10
 SELECT COUNT(type) AS Number_Of_Contact_Person 
-FROM Address_book;
+FROM adbook;
 
 
 
 #UC11
 
-insert into Address_book(fname, lname, city, state, zip, phone, email) values
-('Mohit', 'Gaikwad', 'Ahmednagr', 'Maharastra',414501, 9604315270, 'mohit16gaikwad@gmail.com' ),
-update  Address_book set type='Friends' where id =5;
+insert into adbook(fname, lname, city, state, zip, phone, email) values('kapil', 'sharma', 'jhasi', 'UP', 414501, 9604315270, 'abcd@gmail.com' );
+update  adbook set type='Family' where id =5;
 
 
 #UC12
 
-create table TypesOfContacts
-(
-typeid int primary key ,
-typename varchar(50) not null);
+CREATE TABLE adbbok1 (id int not null auto_increment primary key,
+firstname varchar(15) NOT NULL, lastname varchar(10) NOT NULL,city varchar(50) NOT NULL,state varchar(50) NOT NULL,zip int(6) NOT NULL ,
+phone varchar(10) NOT NULL,email varchar(100) NOT NULL UNIQUE);
+desc adbbok1;
 
-insert into Typesofcontacts
-values
-(1,'Family'),
-(2,'Friends'),
-(3,'Business');
-alter table Address_book
-add contactid int primary key identity(1,1);
+create table adbook2(id int not null auto_increment primary key,name varchar (20) not null,
+ab_id int ,foreign key (ab_id)references adbbok1(id)  );
+desc adbook2;
 
-select *from Address_book;
+create table adbook3(id int not null primary key,type varchar (20));
+desc adbook3;
 
-create table AddressBookNames
-(addressBookId int primary key identity(1,1),
-addressBookName varchar(50) not null );
+create table adbook4(a_id int not null,t_id int not null,foreign key(a_id) references adbbok1(id),
+foreign key(t_id) references adbook3(id),primary key(a_id,t_id));
 
-insert into AddressBooknames values ('S'),('P'),('H');
-select * from AddressBookNames;
+use AD_BOOK_SERVICE;
 
+INSERT INTO adbbok1 VALUES
+(1,'monu', 'gaik', 'Amravati', 'Maharastra',444806, 9168112901, 'mbg@gmail.com'),
+(2,'sonu', 'wad', 'nagpur', 'Maharashtra', 411402, 8138975257, 'mbg1@gmail.com'),
+(3,'swapnil', 'gaik', 'dighori', 'Maharashtra', 7125487, 8149454587, 'mbg2@gmail.com'),
+(4,'mohit', 'wad', 'chitnispura', 'Maharastra', 414501, 9604315270, 'mbg3@gmail.com');
+ 
+insert into adbook2 values (1,'AdddressBook1', 2); 
 
-create table addressbookMappeing
-(contactid int not null, addressbookid int not null);
+insert into adbook3 values(1,'family');
+insert into adbook3 values(2,'friends');
+insert into adbook3 values(3,'profession');
 
-insert into addressbookMappeing
-values
-(1,1),(2,1),(3,2);
+insert into adbook4(a_id,t_id)values(1,1);
 
-select * from Address_book;
-select a.fname,a.phone,a.city,a.state,a.email
-from Address_book a
-join addressbookMappeing d
-on a.contactid= d.contactId
-join AddressBookNames b
-on b.addressBookId= d.addressbookId
+select * from adbbok1;
+select * from adbook2;
+select * from adbook3;
+select * from adbook4;
 
 #UC13
+use ad_book_service;
+SELECT * from adbbok1 inner join adbbok2 
+where city = 'chitnispura' OR stsate = 'MP';
 
---UC6
-select fname,lName,city from Address_book
-where fname='Appu';
+SELECT  city, state, COUNT(*) from adbook
+where city = 'chennai' AND state = 'TamilNaru';
 
---UC7
-select city,count(*) from Address_book
-where city='Athani'
-group by city;
+SELECT * FROM adbook 
+WHERE state = 'Maharashtra' ORDER BY firstname ASC;
 
---UC8
-select * from  Address_book
-where city='Athani'
-order by fname,lName;
+SELECT type, count(*) FROM adbook join adbook3 group by type;
 
---UC10
-select * from Address_book;
+select * from adbook
+inner join adbook3 ON adbook.id = 1 and adbook3.id IN(1,2);
 
-select typename,count(*) numberOfContactPersons from Address_book a
-join addressbookMappeing am
-on am.contactid= a.contactid
-join TypesOfContacts t
-on t.typeid= am.addressbookid
-group by t.typename;
+select * from adbook 
+inner join adbook2 inner join adbook3 ON adbook.id = 1 and adbook3.id= '1' and adbook3.id IN (1);
