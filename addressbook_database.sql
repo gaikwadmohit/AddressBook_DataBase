@@ -1,4 +1,4 @@
 #UC1
-create database AddressBook_services;
+create database AD_BOOK_SERVICE;
 show databases;
-use AddressBook_services;
+use AD_BOOK_SERVICE;
